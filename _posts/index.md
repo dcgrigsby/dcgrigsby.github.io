@@ -1,0 +1,44 @@
+## A long read on vulnerability, an honest account of 2020, and an ask for help.
+
+I have no special claim to complain about 2020.  Like a lot of people, I lost my job, but neither I nor those closest to me caught the virus.
+
+After the shock of losing my job wore off, I was relieved.  I was unhappy at work.  I won't share the particulars. I will say that, with a couple of exceptions, I've sought money at the expense of happiness.  I'd try to buy myself off with “social proof” arguments about my role or the company that appealed to my vanity.
+
+I spent the first month learning how to sleep again.  I read (and did exercises from, among other books) Dr. Kristin Neff's, "[Self-Compassion: The Proven Power of Being Kind to Yourself](https://self-compassion.org/self-compassion-kristin-neff/)".  I started running.  I had been in a low-grade depression.  These mental-health hygiene practices helped me edge out if it.
+
+I once told a psychologist that work was something to get through to be able to retire, and that in retirement, I planned to do the work that I loved.  I’m sure you know her counter argument.  Instead of repeating it, I’ll paraphrase something she said that’s related:
+
+She told me that some smart people follow a pattern that looks like success, but which is shallow.  You’re smart enough to succeed in challenging positions, bringing material value to employers and earning large income for yourself, but after a few years you find yourself bored and move onto to another shallow challenge. 
+
+In late spring, my partner Kristy and I were talking about how COVID-19, in upsetting the status quo, had created an opportunity to re-evaluate unsaid, unacknowledged and unchallenged assumptions.  When we had kids, we defaulted into a traditional division of labor.  Daycare for three kids almost equaled her salary, so she became a full-time mother and I worked to support the family.  I fetishized my "support the family role, twisting it to a self-directive to earn ever more money.  Ironically, the pandemic gave me permission to talk about this with less emotional peril.  Here’s what I learned:
+I had unthinkingly put a price on my happiness.  There’s formula that shows that more money correlates with more happiness up to the number that, in the part of the world in which we live, is approximately equals $75k per adult and $20K per kid.  At that amount, you can live comfortably, save for retirement, send you kids to college, etc.  That’s $210K for my family.  The cost of my happiness was the amount over that that I was paid to stay in jobs that made me unhappy.
+ 
+That margin opened the door for me to consider my own happiness at work.  If the extra money wasn’t making me happier, I could use it as leverage, trading it to negotiate work that I love.  
+
+If my psychologist were right on the first part - that I should not think of work as something to get through on my way to retirement – then I thought, I’d really better be open to the second part of her argument.  So, as summer began, I started listening to the library of [Long Now podcast](https://longnow.org/seminars/podcast/).  The Long Now Foundation purpose is to promote long-term thinking and endeavors.  This depth is very opposite of the shallow pattern described by my psychologist.  Inspired by what I heard, I began working on my own:
+
+When George Floyd was killed, I started pulling on a string that began at [Campaign Zero](https://www.joincampaignzero.org/), which promotes a series of data-driven policies to reduce police violence and ended up discovering a sort of “Moneyball” style inefficiency:  County governments spend most of their budgets on criminal justice and public health.  They are governed by small non-partisan boards of elected officials.  The elections are low-dollar affairs that are often uncontested.  The returns on time, money and effort for social justice and health equity is disproportionally effective when directed towards elections at the county level! 
+
+I started pulling on a string that began with modeling the economics of carbon capture strategies and ended with a counter-intuitive but empirically valid conclusion that waste-to-energy, literally burning garbage, is good for climate change and the environment!  In a nutshell, if you turn petroleum into plastic, use the plastic, then burn it, it is a net win vs. burning the petroleum directly.
+
+I found more than $50 billion in semi-illiquid securities for which I thought there might be an arbitrage opportunity.  Unfortunately, the tender-offer mechanism I hoped to use didn’t apply to this type of security but learning the regulatory structure and working with the SEC was fun.
+
+I discovered that garbage collection is as a proxy for GDP.  Data reported by garbage haulers to their regulators correlates to GDP and is available in advance of when the BEA releases state-level GDP for some states.
+All of these are cases of systems thinking.  I love systems thinking.  The most exciting challenges are engineering changes to dynamic systems.
+
+It’s what drew me to study political science in school.  Societies are the most interesting systems!  
+
+It’s what drew me to Wildflower Schools.  Each Wildflower Montessori school spawns another every two years. From the three dozen schools already established, this growth will lead to 2% of the US population having a Montessori education in a generation.  These are charter schools, so they are free to attend, and placing them in economically disadvantaged neighborhoods brings Montessori education to kids who would normally not have access to it. That is systems change at the societal level!
+
+It’s what drew me to Moogsoft.  IT systems failures at large companies destabilize the economy.  The financial crisis of 2008 showed us how none of us are insulated from these effects, so I was attracted to the idea of providing a sort of buttress to the economy.
+
+Bringing this all together:
+
+I’ve used my time off to work on myself, to reignite my enthusiasm, and to rediscover what I love.  
+
+I’m ready to go to work.  I’m looking for work with purpose. I want to use my product, technology, process and leadership experience – along with the tools of math and statistics; modeling and simulation; and financial and economic thinking – to do deep, disciplined work on a hard problem.
+
+I would be grateful your help.  This is a broad ask.  There are any number of positions that match what I am looking for, but they’re not usually presented in the terms I’ve used here.   If, while reading this, you made a mental connection between what I’ve written here and a person, problem or challenge, I’d be grateful if you’d share it with me.  If not, I’d be grateful if you’d share this with someone you consider smart.
+
+Writing, even a long read, is an exercise in leaving things out.  If that made anything unclear, or if you have any questions, please let me know.  To get in touch directly: I'm [dcgrigsby on Twitter](https://twitter.com/dcgrigsby) and this is [my LinkedIn profile](https://www.linkedin.com/in/dangrigsby/).  I've set both accounts to recieve DMs from anyone.
+
