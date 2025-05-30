@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Ferrule Bio – Independent Bioscience Research</title>
+
+    <link rel="icon" type="image/webp" sizes="32x32"
+        href="data:image/webp;base64,UklGRhQFAABXRUJQVlA4WAoAAAAcAAAAHwAAHwAAQUxQSNgAAAABgGpr27Hp+TU2om0nNdv2CRjR06wDMLJtuzrNn8b2vE/49fzMETEBAKDloAfyjb0Y9k/J15KD1wkKHz8adOnAaxkRfzqM6cBq8A/xNUwOYFT3hGd28gBuxulfjVwAPMa2Y4NEg0NCA7UoQDex5eBF9PW605gEAJpR7JwhUNchY4zhhBZZvdI1iBvX3OrFTdJViBvlkUW8o0gtkNteiXwl0unOIWModKWDFpE1Qznk/jKGvSBH3xtk/8XyMDtAvA+UB7cP8cRSHlCCOMiTi+veVSzI19adKwNWUDggygAAAJAFAJ0BKiAAIAA+kTyaSKWjIqEwGAgAsBIJaQAD4/D6jZtWztW9W+d/N/oK/dW5YpAd+OQgAMx4eIG1CtkUd+h9ifrDZ/jV82RskqicKLtH/GMwHA5Fjltz/lOemoDnG8d+svktCYqnoomh/9pm+vG1dYYKsf+8v/rsbZu9U//KcML5UV+kwl9Io68/Uv0o/2eAdQtX/682arTUnPfvcKSOcqNI2Vnv/kNcwtSuwtXOvpKf0bEsgnzs4M0NsF7E+ozp5LSH92gAAABFWElGhAAAAE1NACoAAAAIAAUBEgADAAAAAQABAAABGgAFAAAAAQAAAEoBGwAFAAAAAQAAAFIBKAADAAAAAQACAACHaQAEAAAAAQAAAFoAAAAAAAAASAAAAAEAAABIAAAAAQADoAEAAwAAAAEAAQAAoAIABAAAAAEAAADIoAMABAAAAAEAAADIAAAAAFhNUCC4AgAAPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNi4wLjAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyIKICAgICAgICAgICAgeG1sbnM6ZXhpZj0iaHR0cDovL25zLmFkb2JlLmNvbS9leGlmLzEuMC8iPgogICAgICAgICA8dGlmZjpZUmVzb2x1dGlvbj43Mi8xPC90aWZmOllSZXNvbHV0aW9uPgogICAgICAgICA8dGlmZjpSZXNvbHV0aW9uVW5pdD4yPC90aWZmOlJlc29sdXRpb25Vbml0PgogICAgICAgICA8dGlmZjpYUmVzb2x1dGlvbj43Mi8xPC90aWZmOlhSZXNvbHV0aW9uPgogICAgICAgICA8dGlmZjpPcmllbnRhdGlvbj4xPC90aWZmOk9yaWVudGF0aW9uPgogICAgICAgICA8ZXhpZjpQaXhlbFhEaW1lbnNpb24+MzAwPC9leGlmOlBpeGVsWERpbWVuc2lvbj4KICAgICAgICAgPGV4aWY6Q29sb3JTcGFjZT4xPC9leGlmOkNvbG9yU3BhY2U+CiAgICAgICAgIDxleGlmOlBpeGVsWURpbWVuc2lvbj4zMDA8L2V4aWY6UGl4ZWxZRGltZW5zaW9uPgogICAgICA8L3JkZjpEZXNjcmlwdGlvbj4KICAgPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4K">
+
     <style>
         * {
             margin: 0;
@@ -105,6 +109,22 @@
             content: "(95";
         }
 
+        .email::after {
+            content: "e.bio";
+        }
+
+        .email::before {
+            content: "cont";
+        }
+
+        .address-line-1::before {
+            content: "8513 1"
+        }
+
+        .address-zip::after {
+            content: "044"
+        }
+
 
         @media (max-width: 768px) {
             h1 {
@@ -160,13 +180,14 @@
             </div>
             <div class="contact-row">
                 <span class="contact-label">Email</span>
-                <span class="contact-value">contact@ferrule.bio</span>
+                <span class="contact-value email">act@ferrul</span>
             </div>
             <div class="contact-row">
                 <span class="contact-label">Mailing Address</span>
                 <span class="contact-value">
-                    8513 172nd St<br>
-                    Lakeville, MN 55044
+                    <span class="address-line-1">72nd St</span>
+                    <br>
+                    Lakeville, MN <span class="address-zip">55</span>
                 </span>
             </div>
         </div>
