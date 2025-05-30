@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ferrule Bio – Independent Bioscience Research</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', 'Monaco', 'Menlo', monospace;
+            background: #fff;
+            color: #1a1a1a;
+            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .main-container {
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .logo {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 40px;
+            display: block;
+            opacity: 0.8;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: normal;
+            letter-spacing: 0.15em;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            color: #333;
+        }
+
+        .subtitle {
+            font-size: 0.95rem;
+            color: #666;
+            letter-spacing: 0.08em;
+            margin-bottom: 60px;
+        }
+
+        .contact-section {
+            max-width: 400px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .contact-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 12px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .contact-row:last-child {
+            border-bottom: none;
+        }
+
+        .contact-label {
+            font-size: 0.85rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            flex-shrink: 0;
+            min-width: 120px;
+        }
+
+        .contact-value {
+            font-size: 0.95rem;
+            color: #1a1a1a;
+            text-align: right;
+            flex-grow: 1;
+        }
+
+        .footer-note {
+            font-size: 0.9rem;
+            color: #888;
+            text-align: center;
+            margin-top: 40px;
+            font-variant: all-small-caps;
+            letter-spacing: 0.05em;
+        }
+
+        .phone::after {
+            content: "888";
+        }
+
+        .phone::before {
+            content: "(95";
+        }
+
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .contact-section {
+                max-width: 100%;
+            }
+
+            .contact-row {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 15px 0;
+            }
+
+            .contact-label {
+                margin-bottom: 5px;
+                min-width: auto;
+            }
+
+            .contact-value {
+                text-align: left;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+                letter-spacing: 0.1em;
+            }
+
+            .subtitle {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-container">
+
+        <img src="data:image/webp;base64,UklGRiARAABXRUJQVlA4WAoAAAAcAAAAxwAAxwAAQUxQSFsHAAABsIf9v2m70XfttU7Yx7bdjm3btm2bcca2bcSp7Taskoyn1tT3rLV/3+8fZ+999hn8xjMRMQH4f8KrGMPfAxGjMbovYXD/Zzx4WyCFLiH4K2LvU2X846cOB1JbBGLlrAp7blKpTbrxozuiqkZCxMxtgeirUB2rKYqWpd8+DUhASHjOpks/uS0GnqpwOzM2WpZ+vDMGFfAeSVp3BAa+yi1UnbXlYUD8skptQ93wGMTgJgQcp9xEcijNmfUDDY1kll6JKrgp4sDLNGyQyFr6rYpxtFAfAKKXkHC7a5TF9qLa2Ki61qeB6CUMcLvLNBzRCI20BopZ3w5IXsI0HLxJmUaKYmfRhlo9A9FLGGC3MzU0jqqLSGpKJ22N5CUMsPVSZZqxzymduwuSlxARv6pc08YSqaE2H4jkJVQB7xGzWZNaRjXUH26P6CWEhKffpikzkiLVwaihrr4/opcQBrj/pZqisatx1Jh1/T1ReQlI2PssDTsZzWhmxiktQfQTEqZ/V6WmNYnkCM2ylrsKEfigNGRnI2kc6qW+Qgx4wVC5m5mxaM0MODsk3PliDa0Dzaw2PRLRWcA07LhCpe5AY9bnkeDvhDBHyh1oumYHBIehinjCNRo2GGnGm++M5DGEhEPOUi5sLfrDgUgeAwZInxdzC7N+uy+iyxCB15qmjEaa8TadPxuVy1BF3PNi5Zqjxtv0OUSfAQNs911xaEYzs9ruhMppSMALbtAUzWjMej2S11BFHHWmLJuZDfUJxwEDpLmmoZFZqzGoQqfw5+gIROCe58iyGW++J1wfBpg17zaVutavn7JDSnE09TwYDKZNmz59+vQZM6ZPnz59xrQUgBCCE4AI3HWplIfS1RvPO/usM88657w1a9asXbdhw4b1G5rXb9h4wcYLL7744k2bNm3evGXL5s1bfrXloi1vwoyZW81OXkBIwOM2SlND/dl/D4MqxOAGoIrY+lXrJbEMh8NS6rquSz1Bs7rOw+Et+iYqeDMCWz/9KxfeXCgV/jmaRr+H6A6EBGDG/nd/wsvOU22Tq3Xliacee+LjUPkDCClidObJKpOjPRwJQIBTQ6jiTLxfuYv6MW1EqKpYwbMR71Yhpaaei05IIQT4NuGDyiS7SH0sDxW8m/C+hskWLUFw0HtV/gxWBw+9r0FdbLxaK100R5niBOWnucrs3dhYtNpFH5xEa61VLprzZ1C00kVz+7Bxai332thFK1w0X4WkJqGiVU7KnKjIohVeEtWbyJHlLpo3MrbaSIm1VrhorjInXWu5i+YrUxMqWuGiBcoctYksg4cWtnS3sZagctq4Rb900aI+rJNcJVLdxi76hYsWK0ucrJcWKYs9y1kLlTnpop+7aNHfE+pi1mBN1vITFy1uMmtin15a1DTRop95if3LWWUCzUU/ddFiZfUhUl1+5qJFKn11LPq5ixYqc9JeWtSfRIqUp9RTs+imhX2oTSMq+qmLFiizZzNyhF5aqCKR6mYjbODIj52URYq9WoMV/cRF85WpcWwMFv3USxL7FJvlpoXKHLWxuv498TMXLW6ZZNEvXLRIWR2sryX+6rnoFy5aqMzJLfm7YSmCj9RivlugTGpSy4OH5iqLzWa9rXDR+5XZu9pWu+i9Kv2NSiw6vvLQPGWS6kFNpJveqsJexVYx68eo3BPxOFkvYtestyO5J2Dfm9VBHRqtwYoe4yAgnadaTcZ266ZrjkTln4hPK1MNfRet2RrBPwnPHEfjZX0PCf6NuOMNMraKXdVS9A4XBWy7TnUbSWtrNz4c0UFI+JFKmzgqWhfT9bsj+OhtyiRFmrHPWmdEuLjCA2hsNPaa9UlEFwXscJWsYVw1FT0byUUIWKnSS7Pphjsg+ihioYYN1kut9dsj+CjhqcoN7dYk0pj1c0T4uMLtrpeNmDV1z3o/kpMCZp+r0sA+TY9EdBISvqbck2i6ZicEP71ahRR7FItOCHBzhQdYzb6zFiO6KWDna2QkzXp5KpKbEHCsavZr+tPtEP0U8RHlnorWbI3gp4Snq4yjpqzvI8HPFW53PW2M1qI3uSpg6/NV+rH6vqgchYTvKVM91Lp0GwRfvVmFfRYtR4CnK9zb2Kgxst6H5KqAbS+XkWbsbkWPcBYCVqtw/Fp/PACVrxIWKPeQdXJVBW89VnUvn0KCryscfLlsvKLnIjorhOlnqIxluvVQVM5CwheUx6q1cTrcHfFSFVJtIpn1DVTuqnCHIo6b9XIkdwXM+rXqMayu743oLgT8TGVEDUbW2rIHKn8lvE95pGPWMkR47BEqNs4cJIdVOPBS1d1qPQnRYaGKp6q0iKTphr0QHIaETymTVEvR6RVcHvFc1aTYmvUJRJdVOPBWGVuNWU9HchkwWKuaFCmRpmuPQPRZxFdUGkaLTp8Wgs8Snq7M9qw5SPB5wFbrlFvMbjgQwWlIeLLqWiRVT+nNiHB7whulknMu0pdQBb+hwvMv1egVr0II8HyFbZ/3ye9/7oU7IwT4PqI5BXg/xJRSDPi///+NHQBWUDggUgYAAJAmAJ0BKsgAyAA+kUadTCWjoqIh9NnQsBIJaW7jQByhzmUW/zFBlz7VAncDLUYE9yX6TeAT9i/3fsAfxj+hf777jPkwzs/nf+c/8fuE/yb+tekR63vQb/VkYUTy7ZZonkwv9sGOlzC5bpqENezkPBmd/OcL+NFss0TsMsanNLW+HS8R5xXTdgvh3kRNMPbo8zjhwebNh3/RkO+J5QRqCcTvA75kPYbaFE1UyZMD1zAO9SOus9Tt1WXLAvEZCn+QspVfZonlytzwb6aHZZF/JyzNt8Q1Vr9yyLtnbU2urQRiTdTQnuWRojaaPCF7rhpiT4kKHWg9Oy/RbLNE7DMMXkm0ZiSqG+70g3+lRh7dwSK9d9ryKaGTIo4JjGH3zjGmHt203wT8L2ktXIf2pBRonl2yuakQ8BNMPbuCaYTAAP7/aAGf1g0xJ7Ouo4btwjPPtf3wSLO0EfJyGXnFbQr0SG4uJAYs9g0gmsb25ivsCqvy1Cf7TJXMixdBGiH4GpAnKm7ZBh+wfFmhsEoJqT54mUFkSa4os8PbQpTTn/mrlZw4yCiVvrH0qWNVWwFlP+Pb+oRi6kd8VLKtz54ZbZVGNJijdp6pJ0RBttLF+9BbSGf4FS0re6FrxtlycdBG7RQKyYpT3gnK2krUZGiHbTUMTPnehNNs0IRMkdZJ7sAo4CB+fJe1iJe+3ONPR/Whcj/u/l+mVu5z5ggGro/G9w9v/SJR0B3X4LmjHvjDQc7AQH+8ZxUcMhWDK8njo/4lYGuf2mVBjGCNwtHk32cn3vwaHgItd+jdY8lvbBZOpnexqT3oaYPf9Y/gAFsOqmT1ulFUZyFjcuAeIcFUEKgzNviyi721aFyohCT7Y8SX6O0ONYvkNKo1yPFjrG7pJTlQP/plGp+yz/K61v1wdNzzjB8mZVhCG7SbY6rFKaq7PfprQMooA6wrIGyzptYMzM++Dguz5BCsL2L/gmZ04r4n/lR3trQTbRXO1QvPr9669OrNh3do9u/RSATVd9z9A82AjAGdWF04cgyt0JpWuwqHdl1qiukxh8BYyMVl1dGomviDkf52Xe8BZ47vPXYZGEAJLmxGSpSkT5vWWyu2sNfV1bUu1ryOM5CphuDVYPioJNz1+he4s0+Y61aBbMtcaQpr9dj1wLLaAZw1BrA6qcSUu4H3JgVo/emnnSdb3udsGXOrhE/rLKFh4kSTlCJbNURRHPKmXRjAnbyH0C9Evqm81Tb54W9D9mNBElN8Rfwx6UNTQfxyoIEd+yN//fln0bX3sKKAg+c+CFJW065lGej/kRvfCYrl4LnJo6leDk166im4WA3+ecnCTJnKuhAi/41gChtzDMHmM9QSDs4orF86HX90kZbwWl9Y3TJ3Op0KgY33OGSY9v+yPnCqAu+mOsRRGf5jYEqGGw0H5A+U0KZDgxQo2Yni2o9CWR9UEn/eB//bVUen3ADV3On4reUSw5pqnOikfC1HKA6dDtQK7OKpiFuu8Moz1e2UhhqLAbhJHuf0RP/s1Hv60gHO2SsfKpT1td1SP/L3+I6+MVigJUAKjC/7E3xtcQJ3jFcWU0Wi+m+44RGWlptkF2dBeW2rlsbf/5oTdYDkEiCkW6qXpap8O3RLK9gcmBy6Zq74SNZ5s0ehn1FittAkgQHte7CCAFzJ0Y9QK4ZTIPfRDSf/6mlCGZ6XBE/83y0+pOvGZTU4XanhqNMB0Gz8Dxa2D6ApbRSE0EYBprnhpbd5uatQ3jgfFS/9d+cr6ZNEOYRu80Hin1X98EDYjSvqEcw80SOu1S1xd/grNzLQv7u2vKRo/+2gwkEn/c7zS7yJ7eodyLvnGSWx/XzcLHhUKpzGjHQ4+D4PAQWMXZ+N2gxwT4xbMK/dgl+lf+43n5Fb1xHxxg2Ezjf4BzL+aLCZLxVRtB0tiSvL8t4tfkYSCZQ9gGPWMwu8WG2z3y9rQ6oOqKccSTaTtycyP1RfKv+N3Zg1rZjjzUctmoBUpjpZTn7XqoSEjYgY90L95e6WX195R4qoiwfERw3AeOa7BmcKE0eazewr4gkjRf7afPL5+Xc1yQlwu8HJmylmBXw4/GaRIpPvne56b3YvVDRPYtXB1d8Q/psrj7gVIpzC533RcChG/ql7PUF8DGlbinEFs4ifYtU1DvU0tpD/KMAAAABFWElGhAAAAE1NACoAAAAIAAUBEgADAAAAAQABAAABGgAFAAAAAQAAAEoBGwAFAAAAAQAAAFIBKAADAAAAAQACAACHaQAEAAAAAQAAAFoAAAAAAAAASAAAAAEAAABIAAAAAQADoAEAAwAAAAEAAQAAoAIABAAAAAEAAADIoAMABAAAAAEAAADIAAAAAFhNUCC4AgAAPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNi4wLjAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyIKICAgICAgICAgICAgeG1sbnM6ZXhpZj0iaHR0cDovL25zLmFkb2JlLmNvbS9leGlmLzEuMC8iPgogICAgICAgICA8dGlmZjpZUmVzb2x1dGlvbj43Mi8xPC90aWZmOllSZXNvbHV0aW9uPgogICAgICAgICA8dGlmZjpSZXNvbHV0aW9uVW5pdD4yPC90aWZmOlJlc29sdXRpb25Vbml0PgogICAgICAgICA8dGlmZjpYUmVzb2x1dGlvbj43Mi8xPC90aWZmOlhSZXNvbHV0aW9uPgogICAgICAgICA8dGlmZjpPcmllbnRhdGlvbj4xPC90aWZmOk9yaWVudGF0aW9uPgogICAgICAgICA8ZXhpZjpQaXhlbFhEaW1lbnNpb24+MzAwPC9leGlmOlBpeGVsWERpbWVuc2lvbj4KICAgICAgICAgPGV4aWY6Q29sb3JTcGFjZT4xPC9leGlmOkNvbG9yU3BhY2U+CiAgICAgICAgIDxleGlmOlBpeGVsWURpbWVuc2lvbj4zMDA8L2V4aWY6UGl4ZWxZRGltZW5zaW9uPgogICAgICA8L3JkZjpEZXNjcmlwdGlvbj4KICAgPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4K"
+            alt="Ferrule Bio" class="logo" />
+
+        <h1>Ferrule Bio</h1>
+        <p class="subtitle">Independent Bioscience Research</p>
+
+        <div class="contact-section">
+            <div class="contact-row">
+                <span class="contact-label">Phone</span>
+                <span class="contact-value phone">2) 592-5</span>
+            </div>
+            <div class="contact-row">
+                <span class="contact-label">Email</span>
+                <span class="contact-value">contact@ferrule.bio</span>
+            </div>
+            <div class="contact-row">
+                <span class="contact-label">Mailing Address</span>
+                <span class="contact-value">
+                    8513 172nd St<br>
+                    Lakeville, MN 55044
+                </span>
+            </div>
+        </div>
+
+        <div class="footer-note">
+            We do not generally respond to unsolicited inquiries
+        </div>
+
+        <!-- Add a copyright and trademark notice using javascript to set the current year -->
+
+        <div class="footer-note">
+            &copy; <span id="current-year"></span> Ferrule Bio, LLC. All rights reserved. <br>
+            Ferrule Bio&trade; is a trademark of Ferrule Bio, LLC.
+        </div>
+        <script>
+            // Set the current year in the footer
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+        </script>
+
+
+    </div>
+</body>
+
+</html>
