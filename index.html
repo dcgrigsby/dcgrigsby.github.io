@@ -396,18 +396,22 @@
         }
 
         function formatHMS(hms) {
+            const hourLabel = hms.hours === 1 ? 'Hour' : 'Hours';
+            const minuteLabel = hms.minutes === 1 ? 'Minute' : 'Minutes';
+            const secondLabel = hms.seconds === 1 ? 'Second' : 'Seconds';
+
             return `
                 <div class="time-unit">
                     <div class="time-value">${hms.hours.toLocaleString()}</div>
-                    <div class="time-label">Hours</div>
+                    <div class="time-label">${hourLabel}</div>
                 </div>
                 <div class="time-unit">
                     <div class="time-value">${String(hms.minutes).padStart(2, '0')}</div>
-                    <div class="time-label">Minutes</div>
+                    <div class="time-label">${minuteLabel}</div>
                 </div>
                 <div class="time-unit">
                     <div class="time-value">${String(hms.seconds).padStart(2, '0')}</div>
-                    <div class="time-label">Seconds</div>
+                    <div class="time-label">${secondLabel}</div>
                 </div>
             `;
         }
