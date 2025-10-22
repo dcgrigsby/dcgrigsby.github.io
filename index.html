@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -175,6 +176,7 @@
             .toggles-wrapper {
                 gap: 2rem;
             }
+
             .container {
                 padding: 1rem;
             }
@@ -184,18 +186,22 @@
             h1 {
                 margin-bottom: 1rem;
             }
+
             .countdown {
                 padding: 1rem 0;
             }
+
             .days-label {
                 margin-top: 0.5rem;
             }
+
             .date-info {
                 margin-top: 1rem;
             }
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h1>ABC Migration</h1>
@@ -229,7 +235,6 @@
             "Are you nuts?",
             "Anxiety Mode",
             "Creeping Dread",
-            "Calgon, Take Me Away",
             "Serenity now!",
             "Game over, man! Game over!",
             "Tick tock, Clarice",
@@ -245,9 +250,24 @@
             "I see dead people"
         ];
 
+        // Track last 3 tooltips to avoid repeats
+        let recentTooltips = [];
+
         // Set random tooltip on page load
         function setRandomHMSTooltip() {
-            const randomTooltip = hmsTooltips[Math.floor(Math.random() * hmsTooltips.length)];
+            let randomTooltip;
+
+            // Keep selecting until we get one not in the last 3
+            do {
+                randomTooltip = hmsTooltips[Math.floor(Math.random() * hmsTooltips.length)];
+            } while (recentTooltips.includes(randomTooltip));
+
+            // Add to recent history
+            recentTooltips.push(randomTooltip);
+            if (recentTooltips.length > 3) {
+                recentTooltips.shift(); // Remove oldest
+            }
+
             const hmsLabel = document.getElementById('hmsLabel');
             hmsLabel.setAttribute('title', randomTooltip);
         }
@@ -573,4 +593,5 @@
         scheduleNextMidnightUpdate();
     </script>
 </body>
+
 </html>
