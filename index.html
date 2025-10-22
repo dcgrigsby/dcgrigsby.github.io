@@ -80,6 +80,11 @@
             margin-top: 0.5rem;
         }
 
+        .year-six {
+            cursor: default;
+            user-select: none;
+        }
+
         .days-label {
             font-size: clamp(1.5rem, 3vw, 3rem);
             font-weight: 300;
@@ -257,6 +262,7 @@
     <script>
         let showWorkdays = true;
         let showHMS = false;
+        let showTenths = false;
 
         // Giphy random display (1 in 30 chance)
         const GIPHY_API_KEY = 'GlVGYHkr3WSBnllca54iNt0yFbjz7L65'; // Public beta key
@@ -508,15 +514,16 @@
             const totalHours = Math.floor(diffTime / (1000 * 60 * 60));
             const minutes = Math.floor((diffTime % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((diffTime % (1000 * 60)) / 1000);
+            const milliseconds = diffTime % 1000;
 
-            return { hours: totalHours, minutes, seconds };
+            return { hours: totalHours, minutes, seconds, milliseconds };
         }
 
         function calculateWorkHMSRemaining() {
             const targetDate = new Date('2026-06-01T00:00:00');
             const now = new Date();
 
-            let totalSeconds = 0;
+            let totalMilliseconds = 0;
 
             // Check if we're currently in work hours
             const currentHour = now.getHours();
@@ -528,7 +535,7 @@
                 // Add remaining hours today
                 const endOfWorkToday = new Date(now);
                 endOfWorkToday.setHours(17, 0, 0, 0);
-                totalSeconds += Math.floor((endOfWorkToday - now) / 1000);
+                totalMilliseconds += (endOfWorkToday - now);
             }
 
             // Count all future workdays
@@ -540,24 +547,27 @@
                 const dayOfWeek = current.getDay();
                 if (dayOfWeek !== 0 && dayOfWeek !== 6 && !isUSHoliday(current)) {
                     // 8 hours per workday (9 AM to 5 PM)
-                    totalSeconds += 8 * 60 * 60;
+                    totalMilliseconds += 8 * 60 * 60 * 1000;
                 }
                 current.setDate(current.getDate() + 1);
             }
 
-            const hours = Math.floor(totalSeconds / 3600);
-            const minutes = Math.floor((totalSeconds % 3600) / 60);
-            const seconds = totalSeconds % 60;
+            const hours = Math.floor(totalMilliseconds / (3600 * 1000));
+            const minutes = Math.floor((totalMilliseconds % (3600 * 1000)) / (60 * 1000));
+            const seconds = Math.floor((totalMilliseconds % (60 * 1000)) / 1000);
+            const milliseconds = totalMilliseconds % 1000;
 
-            return { hours, minutes, seconds };
+            return { hours, minutes, seconds, milliseconds };
         }
 
         function formatHMS(hms) {
             const hourLabel = hms.hours === 1 ? 'Hour' : 'Hours';
             const minuteLabel = hms.minutes === 1 ? 'Minute' : 'Minutes';
             const secondLabel = hms.seconds === 1 ? 'Second' : 'Seconds';
+            const tenths = Math.floor(hms.milliseconds / 100);
+            const tenthsLabel = 'Tenths';
 
-            return `
+            let html = `
                 <div class="time-unit">
                     <div class="time-value">${hms.hours.toLocaleString()}</div>
                     <div class="time-label">${hourLabel}</div>
@@ -571,6 +581,17 @@
                     <div class="time-label">${secondLabel}</div>
                 </div>
             `;
+
+            if (showTenths) {
+                html += `
+                <div class="time-unit">
+                    <div class="time-value">${tenths}</div>
+                    <div class="time-label">${tenthsLabel}</div>
+                </div>
+                `;
+            }
+
+            return html;
         }
 
         function formatDate(date) {
@@ -580,16 +601,15 @@
                 month: 'long',
                 day: 'numeric'
             };
-            return date.toLocaleDateString('en-US', options);
+            const dateStr = date.toLocaleDateString('en-US', options);
+            // Replace the 6 in 2026 with a clickable span
+            return dateStr.replace('2026', '202<span class="year-six" id="yearSix">6</span>');
         }
 
         function updateCountdown() {
             const countdownElement = document.getElementById('countdown');
-            const dateInfoElement = document.getElementById('dateInfo');
             const daysLabel = document.getElementById('daysLabel');
             const targetDate = new Date('2026-06-01T00:00:00');
-
-            dateInfoElement.textContent = `Until ${formatDate(targetDate)}`;
 
             if (showHMS) {
                 // HMS mode
@@ -659,18 +679,53 @@
                 toggleSwitchUnit.classList.remove('hms');
                 daysLabel2.classList.add('active');
                 dhmsLabel.classList.remove('active');
+                // Reset tenths when leaving HMS mode
+                showTenths = false;
             }
 
             updateCountdown();
         }
 
+        function toggleTenths() {
+            // Only show tenths if we're in HMS mode
+            if (!showHMS) {
+                // If not in HMS mode, switch to HMS mode and show tenths
+                showHMS = true;
+                showTenths = true;
+
+                const toggleSwitchUnit = document.getElementById('toggleSwitchUnit');
+                const daysLabel2 = document.getElementById('daysLabel2');
+                const dhmsLabel = document.getElementById('hmsLabel');
+
+                toggleSwitchUnit.classList.add('hms');
+                daysLabel2.classList.remove('active');
+                dhmsLabel.classList.add('active');
+            } else {
+                // Toggle tenths on/off
+                showTenths = !showTenths;
+            }
+
+            updateCountdown();
+        }
+
+        // Add click handler for year 6 easter egg using event delegation
+        document.getElementById('dateInfo').addEventListener('click', function(e) {
+            if (e.target.id === 'yearSix' || e.target.classList.contains('year-six')) {
+                toggleTenths();
+            }
+        });
+
+        // Set the date info once (it never changes)
+        const targetDate = new Date('2026-06-01T00:00:00');
+        document.getElementById('dateInfo').innerHTML = `Until ${formatDate(targetDate)}`;
+
         // Update immediately on load
         updateCountdown();
 
-        // Update every second for HMS mode to show live countdown
+        // Update every 100ms to support tenths of a second
         setInterval(() => {
             updateCountdown();
-        }, 1000);
+        }, 100);
 
         // Update at midnight
         function scheduleNextMidnightUpdate() {
