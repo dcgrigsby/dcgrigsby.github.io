@@ -614,14 +614,20 @@
             if (showHMS) {
                 // HMS mode
                 const hms = showWorkdays ? calculateWorkHMSRemaining() : calculateHMSRemaining();
-                countdownElement.innerHTML = formatHMS(hms);
-                countdownElement.classList.add('dhms-mode');
 
-                if (showWorkdays) {
-                    daysLabel.textContent = 'Work Time Remaining';
+                // Check if time has run out (like Days mode does)
+                if (hms.hours <= 0 && hms.minutes <= 0 && hms.seconds <= 0) {
+                    countdownElement.innerHTML = formatHMS({ hours: 0, minutes: 0, seconds: 0, milliseconds: 0 });
+                    daysLabel.textContent = 'Migration Date';
                 } else {
-                    daysLabel.textContent = 'Time Remaining';
+                    countdownElement.innerHTML = formatHMS(hms);
+                    if (showWorkdays) {
+                        daysLabel.textContent = 'Work Time Remaining';
+                    } else {
+                        daysLabel.textContent = 'Time Remaining';
+                    }
                 }
+                countdownElement.classList.add('dhms-mode');
             } else {
                 // Days mode
                 const daysRemaining = showWorkdays ? calculateWorkdaysRemaining() : calculateDaysRemaining();
