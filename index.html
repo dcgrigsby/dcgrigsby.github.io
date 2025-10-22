@@ -126,7 +126,7 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
 
-        .toggle-switch.workdays .toggle-slider {
+        .toggle-switch.calendar .toggle-slider {
             transform: translateX(30px);
         }
 
@@ -158,17 +158,17 @@
         <div class="countdown" id="countdown">-</div>
         <div class="days-label" id="daysLabel"></div>
         <div class="toggle-container">
-            <span class="toggle-label active" id="calendarLabel">Calendar Days</span>
+            <span class="toggle-label" id="workdayLabel">Workdays</span>
             <div class="toggle-switch" id="toggleSwitch" onclick="toggleDayType()">
                 <div class="toggle-slider"></div>
             </div>
-            <span class="toggle-label" id="workdayLabel">Workdays</span>
+            <span class="toggle-label active" id="calendarLabel">Calendar Days</span>
         </div>
         <div class="date-info" id="dateInfo">-</div>
     </div>
 
     <script>
-        let showWorkdays = false;
+        let showWorkdays = true;
 
         function calculateDaysRemaining() {
             const targetDate = new Date('2026-06-01T00:00:00');
@@ -332,11 +332,11 @@
             const workdayLabel = document.getElementById('workdayLabel');
 
             if (showWorkdays) {
-                toggleSwitch.classList.add('workdays');
+                toggleSwitch.classList.remove('calendar');
                 calendarLabel.classList.remove('active');
                 workdayLabel.classList.add('active');
             } else {
-                toggleSwitch.classList.remove('workdays');
+                toggleSwitch.classList.add('calendar');
                 calendarLabel.classList.add('active');
                 workdayLabel.classList.remove('active');
             }
