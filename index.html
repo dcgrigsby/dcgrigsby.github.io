@@ -224,6 +224,30 @@
         let showWorkdays = true;
         let showHMS = false;
 
+        // Random tooltips for HMS mode
+        const hmsTooltips = [
+            "Are you nuts?",
+            "Anxiety Mode",
+            "Creeping Dread",
+            "Calgon, Take Me Away",
+            "Serenity now!",
+            "Game over, man! Game over!",
+            "Tick tock, Clarice",
+            "We're gonna need a bigger boat",
+            "I'm too old for this shit",
+            "The horror... the horror",
+            "Nobody puts Baby in a corner"
+        ];
+
+        // Set random tooltip on page load
+        function setRandomHMSTooltip() {
+            const randomTooltip = hmsTooltips[Math.floor(Math.random() * hmsTooltips.length)];
+            const hmsLabel = document.getElementById('hmsLabel');
+            hmsLabel.setAttribute('title', randomTooltip);
+        }
+
+        setRandomHMSTooltip();
+
         function calculateDaysRemaining() {
             const targetDate = new Date('2026-06-01T00:00:00');
             const now = new Date();
