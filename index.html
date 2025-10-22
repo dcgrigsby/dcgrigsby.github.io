@@ -51,6 +51,34 @@
             padding: clamp(2rem, 5vh, 4rem) 0;
         }
 
+        .countdown.dhms-mode {
+            display: flex;
+            gap: clamp(1rem, 3vw, 3rem);
+            justify-content: center;
+            align-items: center;
+            font-size: clamp(4rem, 12vw, 12rem);
+        }
+
+        .time-unit {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .time-value {
+            font-weight: 200;
+            line-height: 1;
+        }
+
+        .time-label {
+            font-size: clamp(0.8rem, 1.5vw, 1.2rem);
+            font-weight: 300;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: 0.5rem;
+        }
+
         .days-label {
             font-size: clamp(1.5rem, 3vw, 3rem);
             font-weight: 300;
@@ -130,7 +158,23 @@
             transform: translateX(30px);
         }
 
+        .toggle-switch.hms .toggle-slider {
+            transform: translateX(30px);
+        }
+
+        .toggles-wrapper {
+            display: flex;
+            gap: 3rem;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+
         @media (max-width: 768px) {
+            .toggles-wrapper {
+                gap: 2rem;
+            }
             .container {
                 padding: 1rem;
             }
@@ -157,18 +201,28 @@
         <h1>ABC Migration</h1>
         <div class="countdown" id="countdown">-</div>
         <div class="days-label" id="daysLabel"></div>
-        <div class="toggle-container">
-            <span class="toggle-label" id="workdayLabel">Workdays</span>
-            <div class="toggle-switch" id="toggleSwitch" onclick="toggleDayType()">
-                <div class="toggle-slider"></div>
+        <div class="toggles-wrapper">
+            <div class="toggle-container">
+                <span class="toggle-label active" id="daysLabel2">Days</span>
+                <div class="toggle-switch" id="toggleSwitchUnit" onclick="toggleUnit()">
+                    <div class="toggle-slider"></div>
+                </div>
+                <span class="toggle-label" id="hmsLabel">HMS</span>
             </div>
-            <span class="toggle-label active" id="calendarLabel">Calendar Days</span>
+            <div class="toggle-container">
+                <span class="toggle-label" id="workdayLabel">Workdays</span>
+                <div class="toggle-switch" id="toggleSwitch" onclick="toggleDayType()">
+                    <div class="toggle-slider"></div>
+                </div>
+                <span class="toggle-label active" id="calendarLabel">Calendar</span>
+            </div>
         </div>
         <div class="date-info" id="dateInfo">-</div>
     </div>
 
     <script>
         let showWorkdays = true;
+        let showHMS = false;
 
         function calculateDaysRemaining() {
             const targetDate = new Date('2026-06-01T00:00:00');
@@ -289,6 +343,75 @@
             return workdays;
         }
 
+        function calculateHMSRemaining() {
+            const targetDate = new Date('2026-06-01T00:00:00');
+            const now = new Date();
+            const diffTime = targetDate - now;
+
+            const totalHours = Math.floor(diffTime / (1000 * 60 * 60));
+            const minutes = Math.floor((diffTime % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diffTime % (1000 * 60)) / 1000);
+
+            return { hours: totalHours, minutes, seconds };
+        }
+
+        function calculateWorkHMSRemaining() {
+            const targetDate = new Date('2026-06-01T00:00:00');
+            const now = new Date();
+
+            let totalSeconds = 0;
+
+            // Check if we're currently in work hours
+            const currentHour = now.getHours();
+            const currentDay = now.getDay();
+            const isWorkDay = currentDay !== 0 && currentDay !== 6 && !isUSHoliday(now);
+            const isWorkHours = currentHour >= 9 && currentHour < 17;
+
+            if (isWorkDay && isWorkHours) {
+                // Add remaining hours today
+                const endOfWorkToday = new Date(now);
+                endOfWorkToday.setHours(17, 0, 0, 0);
+                totalSeconds += Math.floor((endOfWorkToday - now) / 1000);
+            }
+
+            // Count all future workdays
+            let current = new Date(now);
+            current.setDate(current.getDate() + 1);
+            current.setHours(0, 0, 0, 0);
+
+            while (current < targetDate) {
+                const dayOfWeek = current.getDay();
+                if (dayOfWeek !== 0 && dayOfWeek !== 6 && !isUSHoliday(current)) {
+                    // 8 hours per workday (9 AM to 5 PM)
+                    totalSeconds += 8 * 60 * 60;
+                }
+                current.setDate(current.getDate() + 1);
+            }
+
+            const hours = Math.floor(totalSeconds / 3600);
+            const minutes = Math.floor((totalSeconds % 3600) / 60);
+            const seconds = totalSeconds % 60;
+
+            return { hours, minutes, seconds };
+        }
+
+        function formatHMS(hms) {
+            return `
+                <div class="time-unit">
+                    <div class="time-value">${hms.hours.toLocaleString()}</div>
+                    <div class="time-label">Hours</div>
+                </div>
+                <div class="time-unit">
+                    <div class="time-value">${String(hms.minutes).padStart(2, '0')}</div>
+                    <div class="time-label">Minutes</div>
+                </div>
+                <div class="time-unit">
+                    <div class="time-value">${String(hms.seconds).padStart(2, '0')}</div>
+                    <div class="time-label">Seconds</div>
+                </div>
+            `;
+        }
+
         function formatDate(date) {
             const options = {
                 weekday: 'long',
@@ -300,26 +423,41 @@
         }
 
         function updateCountdown() {
-            const daysRemaining = showWorkdays ? calculateWorkdaysRemaining() : calculateDaysRemaining();
             const countdownElement = document.getElementById('countdown');
             const dateInfoElement = document.getElementById('dateInfo');
             const daysLabel = document.getElementById('daysLabel');
             const targetDate = new Date('2026-06-01T00:00:00');
 
-            countdownElement.textContent = daysRemaining;
             dateInfoElement.textContent = `Until ${formatDate(targetDate)}`;
 
-            // Update the days label
-            const dayType = showWorkdays ? 'Workday' : 'Day';
-            const dayTypePlural = showWorkdays ? 'Workdays' : 'Days';
+            if (showHMS) {
+                // HMS mode
+                const hms = showWorkdays ? calculateWorkHMSRemaining() : calculateHMSRemaining();
+                countdownElement.innerHTML = formatHMS(hms);
+                countdownElement.classList.add('dhms-mode');
 
-            if (daysRemaining === 1) {
-                daysLabel.textContent = `${dayType} Remaining`;
-            } else if (daysRemaining <= 0) {
-                daysLabel.textContent = 'Migration Date';
-                countdownElement.textContent = '0';
+                if (showWorkdays) {
+                    daysLabel.textContent = 'Work Time Remaining';
+                } else {
+                    daysLabel.textContent = 'Time Remaining';
+                }
             } else {
-                daysLabel.textContent = `${dayTypePlural} Remaining`;
+                // Days mode
+                const daysRemaining = showWorkdays ? calculateWorkdaysRemaining() : calculateDaysRemaining();
+                countdownElement.textContent = daysRemaining;
+                countdownElement.classList.remove('dhms-mode');
+
+                const dayType = showWorkdays ? 'Workday' : 'Day';
+                const dayTypePlural = showWorkdays ? 'Workdays' : 'Days';
+
+                if (daysRemaining === 1) {
+                    daysLabel.textContent = `${dayType} Remaining`;
+                } else if (daysRemaining <= 0) {
+                    daysLabel.textContent = 'Migration Date';
+                    countdownElement.textContent = '0';
+                } else {
+                    daysLabel.textContent = `${dayTypePlural} Remaining`;
+                }
             }
         }
 
@@ -344,11 +482,34 @@
             updateCountdown();
         }
 
+        function toggleUnit() {
+            showHMS = !showHMS;
+
+            // Update toggle switch appearance
+            const toggleSwitchUnit = document.getElementById('toggleSwitchUnit');
+            const daysLabel2 = document.getElementById('daysLabel2');
+            const dhmsLabel = document.getElementById('hmsLabel');
+
+            if (showHMS) {
+                toggleSwitchUnit.classList.add('hms');
+                daysLabel2.classList.remove('active');
+                dhmsLabel.classList.add('active');
+            } else {
+                toggleSwitchUnit.classList.remove('hms');
+                daysLabel2.classList.add('active');
+                dhmsLabel.classList.remove('active');
+            }
+
+            updateCountdown();
+        }
+
         // Update immediately on load
         updateCountdown();
 
-        // Update every hour (3600000 milliseconds)
-        setInterval(updateCountdown, 3600000);
+        // Update every second for HMS mode to show live countdown
+        setInterval(() => {
+            updateCountdown();
+        }, 1000);
 
         // Update at midnight
         function scheduleNextMidnightUpdate() {
